@@ -1,0 +1,56 @@
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.6.3")
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.6.3' //2.6.3
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'top.pcat'
+version = '0.0.1'
+sourceCompatibility = '17'
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/public/' }
+    maven { url 'https://maven.aliyun.com/repository/spring/' }
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+}
+dependencies {
+    implementation group: 'cn.rongcloud.im', name: 'server-sdk-java', version: '3.2.17'
+    implementation ('org.springframework.boot:spring-boot-configuration-processor')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.1'
+    implementation 'com.alibaba:druid-spring-boot-starter:1.2.8'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    implementation 'com.google.code.gson:gson'
+    implementation ('io.minio:minio:8.3.7'){
+        exclude group: "com.squareup.okhttp3" ,module: "okhttp"
+    }
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation 'com.squareup.okio:okio:3.0.0'
+    implementation 'com.alibaba:fastjson:1.2.80'
+    implementation 'org.apache.shiro:shiro-spring-boot-starter:1.9.0'
+    implementation 'com.github.theborakompanioni:thymeleaf-extras-shiro:2.1.0'
+    implementation 'org.apache.shiro:shiro-ehcache:1.9.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'com.auth0:java-jwt:3.19.0'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+}
+
+test {
+    useJUnitPlatform()
+}

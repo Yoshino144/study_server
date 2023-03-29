@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script
+            src="/js/jquery-3.6.0.js"></script>
+</head>
+<body>
+
+<script>
+    $(document).ready(function () {
+
+        let str = window.location.href;
+        var pos = str.lastIndexOf("/")
+
+        $.get("http://192.168.31.238:12345/subjects/" + str.slice(pos + 1),
+            {},
+            function (data, status) {
+                //alert("Data: " + data);
+                // [{
+                //     "idSubject": "1",
+                //     "nameSubject": "数学",
+                //     "chooseTime": "Jan 15, 2022, 3:25:30 PM",
+                //     "founderSubject": "df6f4977e1711b31ff6481403cd6de2b",
+                //     "timeSubject": "Jan 15, 2022, 3:23:01 PM",
+                //     "privateSubject": 0,
+                //     "sizeSubject": 1,
+                //     "officialSubject": 1,
+                //     "adminSubject": 0
+                // }]
+                CreateTable(data);
+            });
+
+        $("button").click(function(){
+            $("<b> Hello World!</b>").appendTo("p");
+            CreateTable("[{\n" +
+                "                    \"idSubject\": \"1\",\n" +
+                "                    \"nameSubject\": \"数学\",\n" +
+                "                    \"chooseTime\": \"Jan 15, 2022, 3:25:30 PM\",\n" +
+                "                    \"founderSubject\": \"df6f4977e1711b31ff6481403cd6de2b\",\n" +
+                "                    \"timeSubject\": \"Jan 15, 2022, 3:23:01 PM\",\n" +
+                "                    \"privateSubject\": 0,\n" +
+                "                    \"sizeSubject\": 1,\n" +
+                "                    \"officialSubject\": 1,\n" +
+                "                    \"adminSubject\": 0\n" +
+                "                }]")
+        });
+
+        function CreateTable(data) {
+            console.info(data);
+            var str =JSON.parse(data);
+            console.info(str);
+            var size = str.length;
+            console.info(size);
+            for (var i = 0; i < size; i++) {
+                var li = $("<li class=\"list-group-item\"></li>");
+                console.info(str[i].nameSubject);
+                var nameSubject = str[i].nameSubject;
+                console.info(str[i].sizeSubject);
+                var span = $("<span class=\"badge\">" + str[i].sizeSubject + "</span>");
+                span.appendTo(li);
+                li.append(nameSubject);
+                li.appendTo("#list-group");
+
+            }
+        }
+
+    });
+
+
+</script>
+
+<button>在每个 p 元素的结尾添加内容</button>
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">官方题库</a></li>
+    <li role="presentation"><a href="#">个人题库</a></li>
+    <li role="presentation"><a href="#">已选</a></li>
+</ul>
+
+<ul class="list-group" id="list-group">
+    <li class="list-group-item">
+        <span class="badge">14</span>
+        Cras justo odio
+    </li>
+</ul>
+
+</body>
+</html>

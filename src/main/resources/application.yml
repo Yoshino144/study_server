@@ -1,0 +1,76 @@
+logging:
+  level:
+    root: info
+
+rong:
+  appKey: pvxdm17jpdhyr
+  appSecret: hblyRTXJjrkUEw
+  api: http://api-cn.ronghub.com
+
+minio:
+  accessKey: admin
+  endpoint: http://localhost:9090
+  secretKey: admin1234
+
+#minio:
+#  accessKey: minioadmin
+#  endpoint: http://localhost:9090
+#  secretKey: minioadmin
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: assign_uuid
+      table-prefix: t_
+  mapper-locations: classpath:mapper/*.xml
+server:
+  max-http-header-size: 10240000
+  port: 12343
+#  ssl:
+#    key-store: classpath:pcat.top.jks
+#    key-store-password: ajmcwg5fdvqt016
+#    key-store-type: JKS
+#    enabled: true
+  servlet:
+    context-path: /
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  banner:
+    location: static/banner.txt
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: online_study
+      password: pc147258369
+      url: jdbc:mysql://101.43.164.47:3305/online_study
+#      url: jdbc:mysql://localhost:3305/online_study
+#      password: root
+#      username: root
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    servlet:
+      content-type: text/html
+  mvc:
+    path match:
+      matching-strategy: ANT_PATH_MATCHER
+    hiddenmethod:
+      filter:
+        enabled: false
